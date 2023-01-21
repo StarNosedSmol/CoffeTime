@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./components/App";
 import { io } from 'socket.io-client'
 const socket = io();
