@@ -8,15 +8,12 @@ module.exports = {
         filename:'main.js',
         path:path.resolve(__dirname, 'dist'),
     },
-    // module:{
-
-    // },
-    // devServer: {
-    //     host: 'localhost',
-    //     port:
-    //     headers: { 'Access-Control-Allow-Origin': '*' },
-    //     proxy:{}
-    // },
+    devServer: {
+      port: 8080,
+      proxy: {
+        '/': 'http://localhost:3000'
+      }
+    },
   plugins: [
     new HtmLWebpackPlugin({
         template: path.join(__dirname, './client/public/index.html')
