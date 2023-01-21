@@ -7,23 +7,21 @@ const app = express();
 const http = createServer(app);
 const io = new Server(http, {});
 
-
 io.on('connection', (socket) => {
   console.log('User connected');
 
   socket.on('disconnect', () => {
-    console.log('user dcd')
-  })
+    console.log('user dcd');
+  });
+});
 
-  socket.on('frontendMessage', (message) => {
-    console.log('recieved message from FE:', message);
-    socket.emit('banana', 'You clicked me!');
+io.on('firstLoad', (message) => {
+  console.log('from PostMan:', message);
+  socket.emit('Send back from Server');
+});
 
-  })
-
-
-})
+io.emit('createEvent', (allEvents) => {});
 
 http.listen(3000, () => {
-  console.log('listening on 3000')
+  console.log('listening on 3000');
 });
