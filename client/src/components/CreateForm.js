@@ -4,6 +4,7 @@ function CreateForm() {
   const [host, useHost] = useState('');
   const [event, useEvent] = useState('');
 
+  //handle submit event handler that onlcick of the button, grab host and event and emit it to the backend 
 
   return (
     <div id='create-form'>

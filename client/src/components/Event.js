@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-function Event() {
+function Event(props) {
   return (
     <div className='event'>
-      <h3 className='event-name'>Coffee @ 11am</h3>
+      <h3 className='event-name'>props.details.title</h3>
 
       <div className='host-info'>
         <h4 className='host-label'>Host</h4>
-        <h5 className='host-name'>Garrett</h5>
+        <h5 className='host-name'>props.host</h5>
       </div>
     </div>
   );
