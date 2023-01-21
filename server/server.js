@@ -8,8 +8,7 @@ const http = createServer(app);
 const io = new Server(http, {});
 
 io.on('connection', (socket) => {
-  console.log('User connected');
-
+  console.log('a user connected');
   socket.on('disconnect', () => {
     console.log('user dcd');
   });
@@ -23,5 +22,6 @@ io.on('firstLoad', (message) => {
 io.emit('createEvent', (allEvents) => {});
 
 http.listen(3000, () => {
+  console.log('listening on 3000');
   console.log('listening on 3000');
 });
