@@ -8,20 +8,20 @@ const http = createServer(app);
 const io = new Server(http, {});
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  //We know websosckets are connected
+  console.log('Connected');
+
   socket.on('disconnect', () => {
     console.log('user dcd');
   });
-});
 
-io.on('firstLoad', (message) => {
-  console.log('from PostMan:', message);
-  socket.emit('Send back from Server');
+  //We will receive event lists form database
+  socket.on('firstLoad', (message) => {
+    console.log('from PostMan:', message);
+    io.emit('createEvent', 'response form DS');
+  });
 });
-
-io.emit('createEvent', (allEvents) => {});
 
 http.listen(3000, () => {
-  console.log('listening on 3000');
   console.log('listening on 3000');
 });
