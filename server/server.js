@@ -1,24 +1,29 @@
 const express = require('express');
+const { Server } = require('socket.io');
+const { createServer } = require('http');
 const path = require('path');
 
-const mongoose = require('mongoose');
-const PORT = 3000;
-
 const app = express();
+const http = createServer(app);
+const io = new Server(http, {});
 
-const mongoURI =
-  'mongodb+srv://francois:”MN7s20IhEKCnNudZ”@cluster0.mntpk3e.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(mongoURI);
 
-/**
- * Automatically parse urlencoded body content and form data from incoming requests and place it
- * in req.body
- */
-app.use(express.json());
-app.use(express.urlencoded());
+io.on('connection', (socket) => {
+  console.log('User connected');
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
+  socket.on('disconnect', () => {
+    console.log('user dcd')
+  })
+
+  socket.on('frontendMessage', (message) => {
+    console.log('recieved message from FE:', message);
+    socket.emit('banana', 'You clicked me!');
+
+  })
+
+
+})
+
+http.listen(3000, () => {
+  console.log('listening on 3000')
 });
-
-module.exports = app;
