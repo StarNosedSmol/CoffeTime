@@ -4,7 +4,7 @@ import Event from "./Event";
 function EventsList() {
   return (
     <div id='events-list'>
-      this is our eventslist
+      <h2>Upcoming Events</h2>
       <Event />
     </div>
   );
