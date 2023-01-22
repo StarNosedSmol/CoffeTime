@@ -1,4 +1,4 @@
-const EventMachine = require('./models/eventFactory');
+const EventMachine = require('./eventFactory');
 
 const eventData = {
   host: 'Garrett Yan',
@@ -10,8 +10,6 @@ const eventData = {
 };
 
 const eventsInstance = new EventMachine(); // Connect the database
-
-// eventsInstance.getEventNumber(/* _id Number */); // Read one event
 
 setTimeout(() => {
   const allEvent = eventsInstance.allEvents; // Fetch all the events
