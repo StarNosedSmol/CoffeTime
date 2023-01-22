@@ -1,26 +1,35 @@
-const EventMachine = require('./models/eventFactory');
+const express = require('express');
+const { Server } = require('socket.io');
+const { createServer } = require('http');
+const path = require('path');
 
-const eventData = {
-  host: 'Garrett Yan',
-  created: new Date(),
-  details: {
-    title: 'Chinese New Year dinner for you all!',
-    date: new Date(),
-  },
-};
+const app = express();
+const http = createServer(app);
+const io = new Server(http, {});
 
-const eventsInstance = new EventMachine(); // Connect the database
+// io.on('connection', (socket) => {
+//   console.log('User connected');
 
-// eventsInstance.getEventNumber(/* _id Number */); // Read one event
+//   socket.on('disconnect', () => {
+//     console.log('user dcd');
+//   });
 
-setTimeout(() => {
-  const allEvent = eventsInstance.allEvents; // Fetch all the events
-  const secondEvent = eventsInstance.getEventByIndex(2); // Fetch all the events
-  const newEvent = eventsInstance.newEvent(eventData); // Add an event
+//   socket.on('frontendMessage', (message) => {
+//     console.log('recieved message from FE:', message);
+//     socket.emit('banana', 'You clicked me!');
 
-  console.log('Second Event: ');
-  console.log(secondEvent);
-  console.log('New Event: ');
-  console.log(newEvent);
-  console.log(eventsInstance.numberOfEvents);
-}, 2000);
+//   });
+// });
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+io.on('test', (socket) => {});
+
+http.listen(3000, () => {
+  console.log('listening on 3000');
+});

@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmLWebpackPlugin = require('html-webpack-plugin');   
+const HtmLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -8,19 +8,30 @@ module.exports = {
         filename:'main.js',
         path:path.resolve(__dirname, 'dist'),
     },
-    // module:{
-
-    // },
-    // devServer: {
-    //     host: 'localhost',
-    //     port:
-    //     headers: { 'Access-Control-Allow-Origin': '*' },
-    //     proxy:{}
-    // },
+    devServer: {
+      port: 8080,
+      proxy: {
+        '/': 'http://localhost:3000'
+      }
+    },
+  module: {
+    rules: [
+      {
+        test: /\.js$/, //Yui uses 'jsx?' instead of 'js$'
+        exclude: /(node_modules)/, //|bower_components)/ got bower from some other docs
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            // plugins: ["@babel/plugin-proposal-class-properties"],
+          },
+        },
+      },
+    ],
+  },
   plugins: [
     new HtmLWebpackPlugin({
-        template: path.join(__dirname, './client/public/index.html')
-      })
-    ]
-
-}
+      template: path.join(__dirname, './client/public/index.html'),
+    }),
+  ],
+};
