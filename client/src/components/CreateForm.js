@@ -12,7 +12,7 @@ function CreateForm(props) {
     //stop page from refreshing and losing connection to socket
     e.preventDefault();
     //send a newEvent type event to the backend, which knows to add this into the db.
-    props.socket.emit('newEvent', { 'host': host, created: new Date(), details: { 'title': event } })
+    props.socket.emit('newEvent', { 'host': host, created: new Date(), eventTime: time, details: { 'title': event } })
     useHost('');
     useEvent('');
   }
@@ -30,7 +30,10 @@ function CreateForm(props) {
         <label id='event-input-and-label'>Event
           <input id='event-input' type='text' onChange={(e) => {useEvent(e.target.value)}} value={event} />
         </label>
+        <div className="submitting">
+          <TimePicker onChange={useTime} value={time} disableClock={true} />
           <button>Submit</button>
+        </div>
       </form>
     </div>
   );

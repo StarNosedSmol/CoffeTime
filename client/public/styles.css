@@ -95,7 +95,6 @@ color: #222;
  height: 48px;
  padding-inline: 32px;
  border: none;
- margin-top: 8px;
  border-radius: 4px;
  box-shadow: none;
 }
@@ -122,13 +121,28 @@ label input {
   border: none;
   background-color: #EDEDED;
   border-radius: 4px;
-  height: 40px;
+  height: 48px;
   padding-inline: 16px;
+}
+
+.react-time-picker__wrapper {
+  border: none;
+  background-color: #EDEDED;
+  border-radius: 4px;
+  height: 48px;
+  padding-inline: 16px;
+}
+
+.submitting {
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+  /* justify-content: center; */
 }
 
 /*on focus border for input fields*/
 input:focus {
-  border: 3px solid red;
+  outline: 3px solid rgb(132, 210, 197, .4);
 }
 
 #host-input {
@@ -137,7 +151,7 @@ input:focus {
 }
 
 #event-input {
-  max-width: 450px;
+  max-width: 500px;
   width: 100%;
 }
 

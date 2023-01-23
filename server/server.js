@@ -9,7 +9,7 @@ const io = new Server(http, {});
 
 
 
-Event.find()
+Event.find({})
   .then(data => {
     io.on('connection', (socket) => {
       // We know websosckets are connected
