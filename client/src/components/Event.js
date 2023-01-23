@@ -8,7 +8,7 @@ function Event(props) {
 
   if (Number(eventTime) > 12) {
     let replaceStr = (Number(eventTime) - 12).toString();
-    
+    j
     eventCopy = replaceStr + eventCopy.slice(2);
     eventCopy += ' PM'
   } else {
