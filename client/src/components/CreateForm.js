@@ -11,7 +11,7 @@ function CreateForm(props) {
     //stop page from refreshing and losing connection to socket
     e.preventDefault();
     //send a newEvent type event to the backend, which knows to add this into the db.
-    props.socket.emit('newEvent', {'host': host, created: new Date(), details: {'title': event, 'date': new Date()}})
+    props.socket.emit('newEvent', {'host': host, created: new Date(), details: {'title': event}})
   }
 
   //onChange lets us dynamically grab the values in the form and send to state
