@@ -1,7 +1,6 @@
 const express = require('express');
 const { Server } = require('socket.io');
 const { createServer } = require('http');
-const path = require('path');
 const EventMachine = require('../server/models/eventFactory');
 
 const app = express();
@@ -27,14 +26,16 @@ io.on('connection', async (socket) => {
   // When connected, fetch the events
   // and send them to the frontend
   const allEvents = await eventsInstance.allEvents;
-  io.emit('loadEvents', allEvents);
+  socket.on('loadEvents', () => {
+    io.emit('loadEvents', allEvents);
+  });
 
   // listen to action 'newEvent',
   // once receive event from client, store it in databasa
   socket.on('newEvent', async (event) => {
     //create new event in database
     const newEvent = eventsInstance.newEvent({ ...template, event });
-    io.emit('loadEvents', newEvent);
+    io.emit('loadEvents', [newEvent]);
   });
 });
 
