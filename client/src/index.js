@@ -13,6 +13,7 @@ root.render(
     </div>
   </>
 );
+
 // Once connect, show Client conected and load all events from database
 socket.on('connect', () => {
   console.log('Client connected');
@@ -22,7 +23,7 @@ socket.on('connect', () => {
   });
   //load events from server by websocket action 'loadEvents'
   socket.on('loadEvents', (events) => {
-    document.querySelector('.chat').innerHTML = message;
+    console.table(events);
   });
 });
 

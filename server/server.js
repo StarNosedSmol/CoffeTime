@@ -2,29 +2,39 @@ const express = require('express');
 const { Server } = require('socket.io');
 const { createServer } = require('http');
 const path = require('path');
+const EventMachine = require('../server/models/eventFactory');
 
 const app = express();
 const http = createServer(app);
 const io = new Server(http, {});
 
-io.on('connection', (socket) => {
-  //We know websosckets are connected
+const eventsInstance = new EventMachine();
+
+// We may want to remove
+// if we want to trigger an error
+const template = {
+  host: 'Nobody',
+  created: new Date(),
+  details: {
+    title: 'There is no description for your event.',
+  },
+};
+
+io.on('connection', async (socket) => {
+  // We know websosckets are connected
   console.log('Server connected' + socket.id);
 
-  //We will receive event lists form database
-  socket.on('loadEvents', (message) => {
-    console.log('from PostMan:', message);
-    io.emit('createEvent', 'response form DS');
-  });
+  // When connected, fetch the events
+  // and send them to the frontend
+  const allEvents = await eventsInstance.allEvents;
+  io.emit('loadEvents', allEvents);
 
-  //listen to action 'newEvent', once receive event from client, store it in databasa
-  socket.on('newEvent', (e) => {
-    //see what event is passed in
-    console.log(e);
+  // listen to action 'newEvent',
+  // once receive event from client, store it in databasa
+  socket.on('newEvent', async (event) => {
     //create new event in database
-    database.set(e);
-    //send back updated events from database to client with action 'loadEvents'
-    io.emit('loadEvent', 'response from DS');
+    const newEvent = eventsInstance.newEvent({ ...template, event });
+    io.emit('loadEvents', newEvent);
   });
 });
 
