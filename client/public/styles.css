@@ -128,7 +128,7 @@ label input {
 
 /*on focus border for input fields*/
 input:focus {
-  border: 3px solid red;
+  outline: 3px solid rgb(132, 210, 197, 0.4);
 }
 
 #host-input {

@@ -4,6 +4,8 @@ import Event from "./Event";
 
 function EventsList(props) {
 
+ 
+
   let colorCounter = 0;
 
   const parseInput = (message) => {
@@ -37,6 +39,10 @@ function EventsList(props) {
     props.socket.on('loadEvents', (message) => {
       parseInput(message);
     })
+  })
+
+  props.socket.on('initialLoad', (data) => {
+    parseInput(data);
   })
   
   return (
