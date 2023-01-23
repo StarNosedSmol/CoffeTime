@@ -19,29 +19,39 @@ const template = {
   },
 };
 
-io.on('connection', async (socket) => {
-  // We know websosckets are connected
-  console.log('Server connected' + socket.id);
+eventsInstance.allEvents
+  .then(data => {
+    io.on('connection', (socket) => {
+      // We know websosckets are connected
+      console.log('Server connected ' + socket.id);
 
-  socket.on('disconnect', () => {
-    console.log('disconnected')
+      socket.on('disconnect', () => {
+        console.log('disconnected')
+      })
+
+
+
+
+      // When connected, fetch the events
+      // and send them to the frontend
+
+      socket.on('loadEvents', () => {
+        console.log('recieved loadEvents');
+        console.log(data, 'sending to fe');
+        io.emit('loadEvents', data);
+      });
+
+
+      // listen to action 'newEvent',
+      // once receive event from client, store it in databasa
+      socket.on('newEvent', async (event) => {
+        //create new event in database
+        const newEvent = eventsInstance.newEvent({ ...template, event });
+        io.emit('loadEvents', [newEvent]);
+      });
+    });
   })
 
-  // When connected, fetch the events
-  // and send them to the frontend
-  const allEvents = await eventsInstance.allEvents;
-  socket.on('loadEvents', () => {
-    io.emit('loadEvents', allEvents);
-  });
-
-  // listen to action 'newEvent',
-  // once receive event from client, store it in databasa
-  socket.on('newEvent', async (event) => {
-    //create new event in database
-    const newEvent = eventsInstance.newEvent({ ...template, event });
-    io.emit('loadEvents', [newEvent]);
-  });
-});
 
 http.listen(3000, () => {
   console.log('listening on 3000');
