@@ -3,12 +3,13 @@ import React, { useEffect, } from "react";
 //containers for individual events
 function Event(props) {
 
-  let eventTime = props.eventTime.slice(0, 2);
+  let eventTime = props.eventTime.slice(0,2);
   let eventCopy = props.eventTime;
+
+   
 
   if (Number(eventTime) > 12) {
     let replaceStr = (Number(eventTime) - 12).toString();
-    j
     eventCopy = replaceStr + eventCopy.slice(2);
     eventCopy += ' PM'
   } else {

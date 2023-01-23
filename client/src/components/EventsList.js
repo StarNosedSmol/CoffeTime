@@ -11,6 +11,7 @@ function EventsList(props) {
     const res = [];
     if (Array.isArray(message)) {
       for (const elem of message) {
+        if(!elem.eventTime) elem.eventTime = 'TBD'
         if (colorCounter > 3) colorCounter = 0;
         res.push(<Event host={elem.host} details={elem.details.title} colorCounter={colorCounter} eventTime={elem.eventTime } key={elem.details.title} />);
         setEvents([...events, ...res]);
