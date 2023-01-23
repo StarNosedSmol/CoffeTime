@@ -1,12 +1,29 @@
-// getting-started.js
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
+
+const EventSchema = new mongoose.Schema({
+  host: {
+    type: String,
+    required: true,
+  },
+  created: {
+    type: Date,
+    required: true,
+  },
+  details: {
+    title: { type: String, required: true },
+    date: { type: Date, required: true },
+    description: String,
+    attendees: Array,
+  },
+});
 
 main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(
-    'mongodb+srv://francois:”MN7s20IhEKCnNudZ”@cluster0.mntpk3e.mongodb.net/?retryWrites=true&w=majority'
+    'mongodb+srv://francois:MN7s20IhEKCnNudZ@cluster0.mntpk3e.mongodb.net/?retryWrites=true&w=majority'
   );
-
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
+
+module.exports = EventSchema;
