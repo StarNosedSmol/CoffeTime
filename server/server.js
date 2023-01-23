@@ -20,8 +20,9 @@ Event.find()
       // When connected, fetch the events
       // and send them to the frontend
 
-      socket.on('loadEvents', () => {
-        io.emit('loadEvents', data);
+      socket.on('initialLoad', () => {
+        console.log(data);
+        io.emit('initialLoad', data);
       });
       // listen to action 'newEvent',
       // once receive event from client, store it in databasa
