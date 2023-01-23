@@ -1,57 +1,45 @@
 const express = require('express');
 const { Server } = require('socket.io');
 const { createServer } = require('http');
-const path = require('path');
+const EventMachine = require('../server/models/eventFactory');
 
 const app = express();
 const http = createServer(app);
 const io = new Server(http, {});
 
-const eventData = [{
-  host: 'Garrett Yan',
+const eventsInstance = new EventMachine();
+
+// We may want to remove
+// if we want to trigger an error
+const template = {
+  host: 'Nobody',
   created: new Date(),
   details: {
-    title: 'Chinese New Year dinner for you all!',
-    date: new Date(),
-  }
-}, {
-    host: 'Ari',
-    created: new Date(),
-    details: {
-      title: 'Chinese New Year dinner for you all!',
-      date: new Date(),
-    }
+    title: 'There is no description for your event.',
   },
-  {
-    host: 'Nate',
-    created: new Date(),
-    details: {
-      title: 'Chinese New Year dinner for you all!',
-      date: new Date(),
-    }
-  }];
+};
 
-io.on('connection', (socket) => {
-  //We know websosckets are connected
+io.on('connection', async (socket) => {
+  // We know websosckets are connected
   console.log('Server connected' + socket.id);
 
   socket.on('disconnect', () => {
     console.log('disconnected')
   })
 
-  //We will receive event lists form database
-  socket.on('loadEvents', (message) => {
-    console.log('from PostMan:', message);
-    io.emit('loadEvents', eventData);
+  // When connected, fetch the events
+  // and send them to the frontend
+  const allEvents = await eventsInstance.allEvents;
+  socket.on('loadEvents', () => {
+    io.emit('loadEvents', allEvents);
   });
 
-  //listen to action 'newEvent', once receive event from client, store it in databasa
-  socket.on('newEvent', (e) => {
-    //see what event is passed in
-    console.log(e);
+  // listen to action 'newEvent',
+  // once receive event from client, store it in databasa
+  socket.on('newEvent', async (event) => {
     //create new event in database
-    //send back updated events from database to client with action 'loadEvents'
-    io.emit('loadEvents', [e]);
+    const newEvent = eventsInstance.newEvent({ ...template, event });
+    io.emit('loadEvents', [newEvent]);
   });
 });
 
