@@ -23,6 +23,10 @@ io.on('connection', async (socket) => {
   // We know websosckets are connected
   console.log('Server connected' + socket.id);
 
+  socket.on('disconnect', () => {
+    console.log('disconnected')
+  })
+
   // When connected, fetch the events
   // and send them to the frontend
   const allEvents = await eventsInstance.allEvents;
