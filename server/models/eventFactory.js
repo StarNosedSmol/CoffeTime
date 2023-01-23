@@ -42,7 +42,7 @@ class EventMachine {
     if (
       typeof host != 'string' ||
       typeof details.title != 'string' ||
-      !details.date instanceof Date ||
+      // !details.date instanceof Date ||
       !created instanceof Date
     ) {
       throw new Error('Input the proper data');

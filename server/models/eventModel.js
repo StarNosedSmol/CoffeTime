@@ -12,7 +12,7 @@ const EventSchema = new mongoose.Schema({
   },
   details: {
     title: { type: String, required: true },
-    date: { type: Date, required: true },
+    // date: { type: Date, required: true },
     description: String,
     attendees: Array,
   },
