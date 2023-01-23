@@ -1,8 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./components/App";
-import { io } from 'socket.io-client'
-const socket = io();
+
 
 const root = createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +14,3 @@ root.render(
 );
 
 
-// const sendMessage = () => {
-//   socket.emit('frontendMessage', '{username: test}')
-// }
