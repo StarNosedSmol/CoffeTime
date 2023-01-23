@@ -18,6 +18,9 @@ const EventSchema = new mongoose.Schema({
   },
 });
 
+const Event = mongoose.model('Event', EventSchema);
+
+
 main().catch((err) => console.log(err));
 
 async function main() {
@@ -26,4 +29,4 @@ async function main() {
   );
 }
 
-module.exports = EventSchema;
+module.exports = Event;
