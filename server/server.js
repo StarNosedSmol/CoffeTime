@@ -11,7 +11,7 @@ let initLoad;
 
 io.on('connection', (socket) => {
   // We know websosckets are connected
-  console.log('Server connected ' + socket.id);
+  console.log('Server connected, websocket ID: ' + socket.id);
   socket.on('disconnect', () => {
     console.log('disconnected')
   })
