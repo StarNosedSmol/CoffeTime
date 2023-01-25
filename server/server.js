@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
     Event.find({})
       .then(data => {
         initLoad = data;
-        console.log('initLoad: ', initLoad);
+        // console.log('initLoad: ', initLoad);
         io.emit('initialLoad', data);
       })
   });
