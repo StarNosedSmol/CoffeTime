@@ -5,11 +5,9 @@ import '../public/styles.css'
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-  <>
     <div>
       <App />
     </div>
-  </>
 );
 
 

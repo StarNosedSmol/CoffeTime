@@ -19,15 +19,4 @@ const EventSchema = new mongoose.Schema({
   },
 });
 
-const Event = mongoose.model('Event', EventSchema);
-
-
-main().catch((err) => console.log(err));
-
-async function main() {
-  await mongoose.connect(
-    'mongodb+srv://georgevaz:Trashtalk123@1gurjts.mongodb.net/?retryWrites=true&w=majority'
-  );
-}
-
-module.exports = Event;
+module.exports = mongoose.model('Event', EventSchema);
