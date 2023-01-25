@@ -13,7 +13,7 @@ function App() {
     <div id='App'>
       <div id='header-container'>
         <img id="mole-logo" src={pic}></img>
-        <h1 id="title">COFFE TIME</h1>
+        <h1 id="title">COFFEE TIME</h1>
       </div>
       <div className="container">
         <div className="wrapper">
