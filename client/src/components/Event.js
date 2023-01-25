@@ -22,7 +22,7 @@ function Event(props) {
   'fontWeight': 500,
   'textDecoration': 'underline',
   'textDecorationColor': colors[props.colorCounter],
-  'text-decoration-thickness': '9px',
+  'textDecorationThickness': '9px',
   'textUnderlinePosition': 'auto',
   };
 
