@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Team-Crocs-Iteration-Project/CoffeTime.git"
+    "url": "https://github.com/Team-Crocs-Iteration-Project/CoffeeTime.git"
   },
   "author": "Team-Crocs-Iteration-Project",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Team-Crocs-Iteration-Project/CoffeTime/issues"
+    "url": "https://github.com/Team-Crocs-Iteration-Project/CoffeeTime/issues"
   },
-  "homepage": "https://github.com/Team-Crocs-Iteration-Project/CoffeTime#readme",
+  "homepage": "https://github.com/Team-Crocs-Iteration-Project/CoffeeTime#readme",
   "dependencies": {
     "css-loader": "^6.7.3",
     "express": "^4.18.2",
