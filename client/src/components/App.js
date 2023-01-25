@@ -21,7 +21,6 @@ function App() {
 
   // These are helper functions for login and logout. Could be moved to another file and imported for tidyness
   const handleLogin = () => {
-    console.log('we got here')
     const connectSocket = io('http://127.0.0.1:3000');
     setSocket(connectSocket);
     setSocketError(null);
@@ -33,7 +32,6 @@ function App() {
 
   // This hook runs whenever the app is rendered
   useEffect(() => {
-    console.log('do we useEffect?')
     // The socket is established AFTER authentication. Pre-auth, skip this conditional
     if (socket) {
       socket.once('connect', () => {
@@ -63,7 +61,6 @@ function App() {
       // While the socket is open, the emit / on cycle will keep this useEffect in progress, preventing this return
       // Once the cycle stops, as a backup, these calls run if there is a socket in state
       // Since in our app we're talking about having the cycle calls in another place, this may hit immediately right now!
-      console.log('do we get here?')
       socket?.off();
       socket?.disconnect();
     };
