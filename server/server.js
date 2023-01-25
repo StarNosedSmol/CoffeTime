@@ -2,6 +2,7 @@ const express = require('express');
 const { Server } = require('socket.io');
 const { createServer } = require('http');
 const Event = require('./models/eventModel')
+const User = require('./models/userModel')
 
 const app = express();
 const http = createServer(app);
