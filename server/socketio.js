@@ -1,4 +1,5 @@
 const User = require('./models/userModel');
+const Event = require('./models/eventModel');
 const _ = require('underscore');
 
 module.exports = function (io) {
@@ -30,7 +31,7 @@ module.exports = function (io) {
     setTimeout(() => {
       // If the authentication failed, disconnect socket
       if (!socket.auth) {
-        console.log('Unauthorized: Disconnecting socket ', socket.id);
+        console.log('CTO Unauthorized: Disconnecting socket ', socket.id);
         return socket.disconnect('unauthorized');
       }
       // If authentication succeeded, restore socket to the namespace
