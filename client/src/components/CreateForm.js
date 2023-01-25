@@ -6,6 +6,7 @@ function CreateForm(props) {
   const [host, useHost] = useState('');
   const [event, useEvent] = useState('');
   const [time, useTime] = useState('10:00');
+  // const [loginError, setLoginError] = useState('');
 
   // handle submit event handler that onlcick of the button, grab host and event and emit it to the backend 
   const handleSubmit = (e) => {
@@ -19,16 +20,25 @@ function CreateForm(props) {
 
   //onChange lets us dynamically grab the values in the form and send to state
   //handleSubmit will run when we submit and send the data back to db
-
+  let hostError, eventError;
   return (
     <div id='create-form'>
       <h2>Create an event 🎉</h2>
-      <form onSubmit={(e)=>{handleSubmit(e)}}>
+      <form onSubmit={(e)=>{
+        e.preventDefault();
+        if (!host){hostError = 'Please enter a host'}
+        else if (!event){eventError = 'Please enter an event'}
+        else {
+          hostError = null;
+          eventError = null;
+          handleSubmit(e)}}}>
         <label id='host-input-and-label'> Host
           <input id='host-input' type='text' onChange={(e) => useHost(e.target.value)} value={host} />
+          {hostError ? <p>{hostError}</p> : null}
         </label> 
         <label id='event-input-and-label'>Event
           <input id='event-input' type='text' onChange={(e) => {useEvent(e.target.value)}} value={event} />
+          {eventError ? <p>{eventError}</p> : null}
         </label>
         <div className="submitting">
           <TimePicker onChange={useTime} value={time} disableClock={true} />
