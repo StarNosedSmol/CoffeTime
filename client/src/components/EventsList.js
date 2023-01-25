@@ -7,6 +7,7 @@ function EventsList(props) {
   let colorCounter = 0;
 
   const parseInput = (message) => {
+    // color counter variable is used for styling
     colorCounter = 0;
     const res = [];
     if (Array.isArray(message)) {
