@@ -7,12 +7,13 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   devServer: {
     port: 8080,
-    proxy: {
+     proxy: {
       '/': 'http://localhost:3000',
-    },
+    }, 
   },
   module: {
     rules: [

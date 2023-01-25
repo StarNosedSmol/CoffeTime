@@ -26,7 +26,7 @@ main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(
-    'mongodb+srv://francois:MN7s20IhEKCnNudZ@cluster0.mntpk3e.mongodb.net/?retryWrites=true&w=majority'
+    'mongodb+srv://georgevaz:Trashtalk123@1gurjts.mongodb.net/?retryWrites=true&w=majority'
   );
 }
 
