@@ -72,8 +72,8 @@ p, h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-#empty-div {
-  width: 192px;
+.empty-div {
+  flex-grow: 1;
 }
 
 #title-container {

@@ -14,7 +14,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [socketError, setSocketError] = useState(null);
   // These pieces are for the login credentials
-  const [username, setUsername] = useState('Bob');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // This piece hold the user profile after authentication
   const [user, setUser] = useState(null);
@@ -70,7 +70,7 @@ function App() {
   return (
     <div id="App">
       <div id="header-container">
-        <div id="empty-div"></div>
+        <div className="empty-div"></div>
         <div id="title-container">
           <img id="mole-logo" src={pic}></img>
           <h1 id="title">COFFEE TIME</h1>
@@ -78,9 +78,9 @@ function App() {
         {user ? (
           <div id="logout-container">
             <h3 id="username-header">{username}</h3>
-            <button type="button" id="logout-button">Logout 👋</button>
+            <button type="button" id="logout-button" onClick={handleLogout}>Logout 👋</button>
           </div>
-        ) : (null)}
+        ) : (<div className="empty-div"></div>)}
       </div>
       {/* If there is a user in state, render our main page, otherwise render login page */}
       {user ? (
@@ -90,7 +90,7 @@ function App() {
             <EventsList socket={socket} />
           </div>
         </div>
-      ) : ( /* Test Code */ 
+      ) : ( 
         <div id="login-container">
           <h2>Login ☕️</h2>
           <input id="username" 
