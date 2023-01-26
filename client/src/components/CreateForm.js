@@ -26,12 +26,7 @@ function CreateForm(props) {
       <h2>Create an event 🎉</h2>
       <form onSubmit={(e)=>{
         e.preventDefault();
-        if (!host){hostError = 'Please enter a host'}
-        else if (!event){eventError = 'Please enter an event'}
-        else {
-          hostError = null;
-          eventError = null;
-          handleSubmit(e)}}}>
+        if (host && event){handleSubmit(e)}}}>
         <label id='host-input-and-label'> Host
           <input id='host-input' type='text' onChange={(e) => useHost(e.target.value)} value={host} />
           {hostError ? <p>{hostError}</p> : null}
