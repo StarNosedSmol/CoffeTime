@@ -6,7 +6,6 @@ function CreateForm(props) {
   const [host, useHost] = useState('');
   const [event, useEvent] = useState('');
   const [time, useTime] = useState('10:00');
-  // const [loginError, setLoginError] = useState('');
 
   // handle submit event handler that onlcick of the button, grab host and event and emit it to the backend 
   const handleSubmit = (e) => {
