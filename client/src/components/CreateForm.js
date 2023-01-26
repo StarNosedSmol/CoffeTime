@@ -20,7 +20,7 @@ function CreateForm(props) {
 
   //onChange lets us dynamically grab the values in the form and send to state
   //handleSubmit will run when we submit and send the data back to db
-  let hostError, eventError;
+
   return (
     <div id='create-form'>
       <h2>Create an event 🎉</h2>
