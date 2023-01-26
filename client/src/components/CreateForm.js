@@ -24,7 +24,7 @@ function CreateForm(props) {
     <div id='create-form'>
       <h2>Create an event 🎉</h2>
       <form onSubmit={(e)=>{
-        // e.preventDefault();
+        e.preventDefault();
         if (host && event){handleSubmit(e)}}}>
         <label id='host-input-and-label'> Host
           <input id='host-input' type='text' onChange={(e) => useHost(e.target.value)} value={host} />
