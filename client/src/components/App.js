@@ -14,7 +14,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [socketError, setSocketError] = useState(null);
   // These pieces are for the login credentials
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('Bob');
   const [password, setPassword] = useState('');
   // This piece hold the user profile after authentication
   const [user, setUser] = useState(null);
@@ -70,8 +70,17 @@ function App() {
   return (
     <div id="App">
       <div id="header-container">
-        <img id="mole-logo" src={pic}></img>
-        <h1 id="title">COFFEE TIME</h1>
+        <div id="empty-div"></div>
+        <div id="title-container">
+          <img id="mole-logo" src={pic}></img>
+          <h1 id="title">COFFEE TIME</h1>
+        </div>
+        {user ? (
+          <div id="logout-container">
+            <h3 id="username-header">{username}</h3>
+            <button type="button" id="logout-button">Logout 👋</button>
+          </div>
+        ) : (null)}
       </div>
       {/* If there is a user in state, render our main page, otherwise render login page */}
       {user ? (
@@ -82,24 +91,21 @@ function App() {
           </div>
         </div>
       ) : ( /* Test Code */ 
-      <div className="login__container">
-      <h1>Login</h1>
-      <input
-        type="text"
-        value={username}
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="button" onClick={handleLogin}>
-        Login
-      </button>
-    </div>
+        <div id="login-container">
+          <h2>Login ☕️</h2>
+          <input id="username" 
+                  placeholder="username" 
+                  onChange={(e) => setUsername(e.target.value)}
+          />
+          <input type="password" 
+                  id="password" 
+                  placeholder="password" 
+                  onChange={(e) => setPassword(e.target.value)}
+          />
+          <button id="login-button" onClick={handleLogin}>
+            Login
+          </button>
+        </div>
       )}
       {/* If there is a socket error in state, render it */}
       {socketError ? <p>{socketError}</p> : null}
